@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH --job-name=RNA_seq_code
+#SBATCH --output=RNA_seq.out
+#SBATCH --error=RNA_seq.err
+#SBATCH --ntasks=1
+#SBATCH --nodes=1
+#SBATCH --mem=1gb
+#SBATCH --time=00:03:00
+#SBATCH --partition=windfall
+#SBATCH --account=windfall
+#SBATCH --mail-user=stephbarr@arizona.edu
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+
+cd ~/ccbb_projects/outputs
+
+grep "coding" new_gene_results.txt > final_data.txt
+    echo "coding moved to new data temp"
+
+random_number=$((RANDOM % 10))
+    echo "selected $random_number"
+
+sed -i "s/0/$random_number/g" final_data.txt
+    echo "final data made"
+
+    echo "mission successful"
